@@ -12,22 +12,25 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "account")
+@Table(name = "Accounts")
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "acount_id")
+    @Column
     private long id;
 
-    @Column(name = "username", unique = true, nullable = false)
-    private String userName;
+    @Column(nullable = false)
+    private String username;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "active")
+    @Column
     private boolean active;
 
     @Column(name = "user_role")

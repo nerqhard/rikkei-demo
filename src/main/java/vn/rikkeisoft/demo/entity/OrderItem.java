@@ -6,15 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Products")
-public class Product implements Serializable {
+@Table(name = "OrderItems")
+public class OrderItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,20 +21,17 @@ public class Product implements Serializable {
     @Column
     private long id;
 
-    @Column(nullable = false)
-    private String code;
+    @ManyToOne
+    @JoinColumn
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn
+    private Product product;
 
     @Column(nullable = false)
-    private String name;
+    private int quantity;
 
     @Column(nullable = false)
     private double price;
-
-    @Lob
-    @Column(name = "image", length = Integer.MAX_VALUE)
-    private byte[] image;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date", nullable = false)
-    private Date createDate;
 }
