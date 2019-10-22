@@ -1,0 +1,74 @@
+body {
+    color: #404E67;
+    /* The image used */
+    background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+
+.table-title h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+
+table.table {
+    table-layout: fixed;
+}
+
+.table-wrapper {
+    width: 700px;
+    margin: 30px auto;
+    background: #fff;
+    opacity: 0.9;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+table.table tr th, table.table tr td {
+    border-color: #979797;
+}
+
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}
+
+table.table td i {
+    font-size: 19px;
+}
+.table td {
+    text-align: center
+}
+table.table th{
+    background: lightgreen;
+}
+table.table td a.edit {
+    color: #FFC107;
+    padding: auto;
+}
+
+table.table td a.delete {
+    color: #E34724;
+    padding: 5px 0;
+}

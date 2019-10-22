@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/product.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Products</title>
+</head>
+<body>
+<div class="container" style="width: 700px">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="container" style="text-align: center"><h2><b>Product Details</b></h2></div>
+            </div>
+        </div>
+        <table class="table table-bordered" th:if="${#lists.isEmpty(productList)}">
+            <div class="alert alert-warning">
+                <strong>There are no users to show the view !!!</strong>
+            </div>
+
+        </table>
+        <table class="table table-bordered" th:if="${not #lists.isEmpty(productList)}">
+            <tr class="header-color" style="text-align: center">
+                <th width="50px">#</th>
+                <th width="120px">Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th width="100px">Action</th>
+            </tr>
+            <tbody>
+            <tr th:each="product, i : ${productList}">
+                <td>
+                    <span th:text="${i.index + 1}"></span>
+                </td>
+                <td>
+                    <span th:text="${product.code}"></span>
+                </td>
+                <td>
+                    <span th:text="${product.name}"></span>
+                </td>
+                <td>
+                    <span th:text="${product.price}"></span>
+                </td>
+                <td>
+                    <span th:text="${product.image}"></span>
+                </td>
+                <td>
+                    <a  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
