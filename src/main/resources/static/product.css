@@ -29,8 +29,7 @@ table.table {
 }
 
 .table-wrapper {
-    width: 700px;
-    margin: 30px auto;
+    margin: 100px auto;
     background: #fff;
     opacity: 0.9;
     padding: 20px;

@@ -1,40 +1,17 @@
-.design-by {
-    color: white;
-    position: absolute;
-    bottom: 64px;
-    width: 100%;
-    text-align: center;
-}
-
-.mentor {
-    color: white;
-    position: absolute;
-    bottom: 15px;
-    width: 100%;
-    text-align: center;
-}
-
-.passion {
-    color: white;
-    position: absolute;
-    bottom: 38px;
-    width: 100%;
-    text-align: center;
-}
-
-* {
-    margin: 0;
-}
-
 html, body {
     height: 90% !important;
 }
 
-.footer {
-    height: 100px;
-    margin-top: 10px;
-    opacity: .8;
-    position: relative;
-    clear: both;
-    min-height:10%;
+.body-fix {
+    overflow: auto;
+}
+.footer-fix {
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    width: 100%;
+    text-align: end;
+    color: #fffcfc;
 }

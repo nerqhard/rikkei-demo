@@ -2,51 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="common/head :: head"></th:block>
 <th:block th:replace="common/header :: header"></th:block>
-<div class="container" style="width: 700px">
+<div class="container body-fix" style="width: 700px">
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="container" style="text-align: center"><h2><b>Order Item Details</b></h2></div>
+                <div class="container" style="text-align: center"><h2><b>Order Item Details <span th:text="${idOther}"></span></b></h2></div>
             </div>
         </div>
-        <table class="table table-bordered" th:if="${#lists.isEmpty(orderItemList)}">
+        <table class="table table-bordered" th:if="${#lists.isEmpty(orders)}">
             <div class="alert alert-warning">
-                <strong>There are no product to show the view !!!</strong>
+                <strong>There are no item to show the view !!!</strong>
             </div>
 
         </table>
-        <table class="table table-bordered" th:if="${not #lists.isEmpty(orderItemList)}">
+        <table class="table table-bordered" th:if="${not #lists.isEmpty(orders)}">
             <tr class="header-color" style="text-align: center">
                 <th width="50px">#</th>
                 <th>Product</th>
-                <th>Order</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Amount</th>
             </tr>
             <tbody>
-            <tr th:each="orderItem, i : ${orderItemList}">
+            <tr th:each="order, i : ${orders}">
                 <td>
                     <span th:text="${i.index + 1}"></span>
                 </td>
                 <td>
-                    <span th:text="${orderItem.product}"></span>
+                    <span th:text="${order.product.name}"></span>
                 </td>
                 <td>
-                    <span th:text="${orderItem.order}"></span>
+                    <span th:text="${order.price}"></span>
                 </td>
                 <td>
-                    <span th:text="${orderItem.price}"></span>
+                    <span th:text="${order.quantity}"></span>
                 </td>
                 <td>
-                    <span th:text="${orderItem.quantity}"></span>
-                </td>
-                <td>
-                    <span th:text="${orderItem.quantity * orderItem.price}"></span>
-                </td>
-                <td>
-                    <a  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                    <span th:text="${order.quantity * order.price}"></span>
                 </td>
             </tr>
             </tbody>
