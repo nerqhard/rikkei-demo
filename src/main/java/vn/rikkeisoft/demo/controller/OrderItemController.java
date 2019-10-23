@@ -5,18 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import vn.rikkeisoft.demo.repositories.ProductRepository;
+import vn.rikkeisoft.demo.repositories.OrderItemRepository;
 
 @Controller
-@RequestMapping("/products")
-public class ProductController {
-
+@RequestMapping("/order-items")
+public class OrderItemController {
     @Autowired
-    private ProductRepository productRepository;
+    private OrderItemRepository orderItemRepository;
 
     @GetMapping("/")
     public String get(Model model) {
-        model.addAttribute("productList", productRepository.findAll());
-        return "product";
+        model.addAttribute("orderItemList", orderItemRepository.findAll());
+        return "orderItem";
     }
 }

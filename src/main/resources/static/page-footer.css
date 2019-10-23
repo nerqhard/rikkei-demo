@@ -1,0 +1,40 @@
+.design-by {
+    color: white;
+    position: absolute;
+    bottom: 64px;
+    width: 100%;
+    text-align: center;
+}
+
+.mentor {
+    color: white;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.passion {
+    color: white;
+    position: absolute;
+    bottom: 38px;
+    width: 100%;
+    text-align: center;
+}
+
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 90% !important;
+}
+
+.footer {
+    height: 100px;
+    margin-top: 10px;
+    opacity: .8;
+    position: relative;
+    clear: both;
+    min-height:10%;
+}
