@@ -20,6 +20,11 @@ public class MainController {
     @GetMapping("/login")
     public String getLogin(Model model) {
         model.addAttribute("pageTitle","Login");
+        //Neu da dang nhap, co Authentication => ko the vao trang login
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getCredentials() == null) {
+            return "redirect:/";
+        }
         return "login";
     }
     @GetMapping("/logout")
@@ -40,5 +45,10 @@ public class MainController {
     public String accessDenied(Model model){
         model.addAttribute("pageTitle","Error");
         return "403";
+    }
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("pageTitle","Register");
+        return "register";
     }
 }
