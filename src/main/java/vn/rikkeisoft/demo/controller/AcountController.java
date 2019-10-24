@@ -17,6 +17,7 @@ public class AcountController {
     @GetMapping("/")
     public String get(Model model) {
         model.addAttribute("accountList", accountRepository.findAll());
+        model.addAttribute("pageTitle", "Account");
         return "account";
     }
 }

@@ -1,19 +1,17 @@
 package vn.rikkeisoft.demo.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "OrderItems")
-public class OrderItem implements Serializable {
+@Table(name = "Roles")
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,17 +20,16 @@ public class OrderItem implements Serializable {
     @Column
     private long id;
 
-    @ManyToOne
-    @JoinColumn
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn
-    private Product product;
-
     @Column
-    private int quantity;
+    private String role;
+//
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "roles")
+//    private Set<Account> accounts;
 
-    @Column
-    private double price;
+    public Role(){
+    }
+
+    public Role(String role) {
+        this.role = role;
+    }
 }

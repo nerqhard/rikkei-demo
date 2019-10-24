@@ -25,10 +25,10 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "order")
     private Set<OrderItem> orderItems;
 
-    @Column(name = "order_date", nullable = false)
+    @Column(name = "order_date")
     private Date orderDate;
 
-    @Column(nullable = false)
+    @Column
     private double amount;
 
     @ManyToOne

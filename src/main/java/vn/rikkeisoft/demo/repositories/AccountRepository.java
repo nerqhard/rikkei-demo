@@ -4,4 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import vn.rikkeisoft.demo.model.entity.Account;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
+    Account findByUsername(String username);
 }

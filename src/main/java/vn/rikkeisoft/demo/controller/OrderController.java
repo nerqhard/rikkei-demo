@@ -16,6 +16,7 @@ public class OrderController {
 
     @GetMapping("/")
     public String get(Model model) {
+        model.addAttribute("pageTitle","Order");
         model.addAttribute("orderList", orderRepository.findAll());
         return "order";
     }

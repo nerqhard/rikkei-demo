@@ -22,13 +22,13 @@ public class Product implements Serializable {
     @Column
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String code;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private double price;
 
     @Lob
@@ -36,6 +36,6 @@ public class Product implements Serializable {
     private byte[] image;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     private Date createDate;
 }

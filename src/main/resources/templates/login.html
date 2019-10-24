@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="common/head :: head "></th:block>
+<th:block th:replace="common/header :: header"></th:block>
+<link rel="stylesheet" th:href="@{/login.css}">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <p th:if="${param.error}" class="error">Invalid email or password</p>
+            <p th:if="${param.logout}" class="success">You have been logged out</p>
+            <p style="margin-top: 1rem"><b style="font-size: 22px; color: #39ace7"> Log in </b></p>
+        </div>
+
+        <!-- Login Form -->
+        <form th:action="@{/login}" method="POST">
+            <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your Password">
+            <input type="submit" class="fadeIn fourth"style="margin: 20px" value="Login">
+        </form>
+
+        <!--        Sign UP-->
+        <div id="formSignUp">
+            <p class="text-center small">Don't have an account? <a th:href="@{/registration}">Sign up
+                here!</a></p>
+        </div>
+        <!-- Remind Passowrd -->
+        <div id="formForgot">
+            <a class="underlineHover">Forgot Password?</a>
+        </div>
+    </div>
+</div>
+<th:block th:replace="common/footer :: footer"></th:block>
+</html>
