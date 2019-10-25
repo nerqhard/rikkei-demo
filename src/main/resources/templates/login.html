@@ -9,16 +9,19 @@
 
         <!-- Icon -->
         <div class="fadeIn first">
-            <p th:if="${param.error}" class="error">Invalid email or password</p>
-            <p th:if="${param.logout}" class="success">You have been logged out</p>
+
             <p style="margin-top: 1rem"><b style="font-size: 22px; color: #39ace7"> Log in </b></p>
+            <p th:if="${param.error}" class="error">
+                <span style="font-size:12px; color: #FF1C19;">Email or Password invalid, please verify!</span>
+            </p>
+            <p class="text-success" th:if="${successMessage}" th:text="${successMessage}"/>
         </div>
 
         <!-- Login Form -->
         <form th:action="@{/login}" method="POST">
             <input type="text" class="fadeIn second" name="username" placeholder="Username">
             <input type="password" class="fadeIn third" name="password" placeholder="Your Password">
-            <input type="submit" class="fadeIn fourth"style="margin: 20px" value="Login">
+            <input type="submit" class="fadeIn fourth" style="margin: 20px" value="Login">
         </form>
 
         <!--        Sign UP-->

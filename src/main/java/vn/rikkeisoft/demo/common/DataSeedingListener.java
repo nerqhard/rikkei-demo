@@ -10,6 +10,7 @@ import vn.rikkeisoft.demo.entity.Role;
 import vn.rikkeisoft.demo.repositories.AccountRepository;
 import vn.rikkeisoft.demo.repositories.RoleRepository;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 @Component
 public class DataSeedingListener implements ApplicationListener<ContextRefreshedEvent> {
@@ -35,12 +36,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
         }
 
         //Create Admin
-        if (accountRepository.findByUsername("admin") == null) {
+        if (accountRepository.findByUsername("admin1234") == null) {
             AccountEntity admin = new AccountEntity();
-            admin.setUsername("admin");
+            admin.setUsername("admin1234");
             admin.setPassword(passwordEncoder.encode("123456"));
             admin.setFullName("Nguyen Quang Ha");
-            admin.setActive(true);
+            admin.setCreateDate(new Timestamp(System.currentTimeMillis()));
             HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByRole("ROLE_ADMIN"));
             roles.add(roleRepository.findByRole("ROLE_MEMBER"));
@@ -49,12 +50,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
         }
 
         //Create Member
-        if (accountRepository.findByUsername("member1") == null) {
+        if (accountRepository.findByUsername("member1234") == null) {
             AccountEntity user = new AccountEntity();
-            user.setUsername("member1");
+            user.setUsername("member1234");
             user.setPassword(passwordEncoder.encode("123456"));
             user.setFullName("Nguyen Van A");
-            user.setActive(true);
+            user.setCreateDate(new Timestamp(System.currentTimeMillis()));
             HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByRole("ROLE_MEMBER"));
             user.setRoles(roles);

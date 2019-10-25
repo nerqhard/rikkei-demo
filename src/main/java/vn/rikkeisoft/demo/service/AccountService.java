@@ -1,24 +1,22 @@
 package vn.rikkeisoft.demo.service;
 
-import vn.rikkeisoft.demo.dto.AccountDTO;
-import vn.rikkeisoft.demo.entity.AccountEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import vn.rikkeisoft.demo.service.dto.AccountDTO;
 
-import java.awt.print.Pageable;
+
 import java.util.List;
 
 public interface AccountService {
 
-    AccountEntity save(AccountEntity accountEntity);
-
-    AccountEntity findByUsername(String name);
-
-    AccountEntity findById(Long id);
+    AccountDTO save(AccountDTO dto);
 
     void delete(Long id);
 
-    List<AccountEntity> findAll(Pageable pageable);
+    List<AccountDTO> findAll();
 
-    void editRoleAccount(Long id, String role);
+    AccountDTO findById(Long id);
 
+    AccountDTO findByUsername(String name);
 
 }

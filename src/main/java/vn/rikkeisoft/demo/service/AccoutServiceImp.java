@@ -1,6 +1,8 @@
 package vn.rikkeisoft.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import vn.rikkeisoft.demo.common.EncrytedPasswordUtils;
@@ -8,15 +10,14 @@ import vn.rikkeisoft.demo.entity.AccountEntity;
 import vn.rikkeisoft.demo.entity.Role;
 import vn.rikkeisoft.demo.repositories.AccountRepository;
 import vn.rikkeisoft.demo.repositories.RoleRepository;
+import vn.rikkeisoft.demo.service.dto.AccountDTO;
+import vn.rikkeisoft.demo.service.mapper.AccountMapper;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
-public class AccoutServiceImp implements AccountService  {
+public class AccoutServiceImp implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
@@ -27,23 +28,19 @@ public class AccoutServiceImp implements AccountService  {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public AccountEntity save(AccountEntity accountEntity) {
-        accountEntity.setPassword(EncrytedPasswordUtils.encrytePassword(accountEntity.getPassword()));
-        accountEntity.setCreateDate(new Timestamp(System.currentTimeMillis()));
-        Role role = roleRepository.findByRole("MEMBER");
-        accountEntity.setRoles(new HashSet<>(Arrays.asList(role)));
-        return accountRepository.save(accountEntity);
-    }
+    @Autowired
+    private AccountMapper accountMapper;
 
     @Override
-    public AccountEntity findByUsername(String name) {
-        return accountRepository.findByUsername(name);
-    }
+    public AccountDTO save(AccountDTO dto) {
 
-    @Override
-    public AccountEntity findById(Long id) {
-        return accountRepository.findById(id).get();
+        AccountEntity entity = accountMapper.toEntity(dto);
+        entity.setPassword(EncrytedPasswordUtils.encrytePassword(dto.getPassword()));
+        Role role = roleRepository.findByRole("ROLE_MEMBER");
+        entity.setRoles(new HashSet<>(Arrays.asList(role)));
+        accountRepository.save(entity);
+
+        return accountMapper.toDto(entity);
     }
 
     @Override
@@ -52,12 +49,27 @@ public class AccoutServiceImp implements AccountService  {
     }
 
     @Override
-    public List<AccountEntity> findAll(Pageable pageable) {
-        return accountRepository.findAll();
+    public List<AccountDTO> findAll() {
+        List<AccountEntity> entities = accountRepository.findAll();
+        List<AccountDTO> dtos = new ArrayList<>();
+        entities.forEach(i->{
+            dtos.add(accountMapper.toDto(i));
+        });
+        return dtos;
     }
 
     @Override
-    public void editRoleAccount(Long id, String role) {
-
+    public AccountDTO findById(Long id) {
+        AccountEntity entity = accountRepository.findById(id).get();
+        return accountMapper.toDto(entity);
     }
+
+    @Override
+    public AccountDTO findByUsername(String name) {
+//        AccountEntity entity = accountRepository.findByUsername(name);
+//        return accountMapper.toDto(entity);
+
+        return Optional.ofNullable(accountRepository.findByUsername(name)).map(accountMapper::toDto).orElse(null);
+    }
+
 }
