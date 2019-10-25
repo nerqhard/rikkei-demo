@@ -1,4 +1,4 @@
-package vn.rikkeisoft.demo.model.entity;
+package vn.rikkeisoft.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

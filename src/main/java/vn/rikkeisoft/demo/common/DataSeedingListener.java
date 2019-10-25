@@ -5,8 +5,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import vn.rikkeisoft.demo.model.entity.Account;
-import vn.rikkeisoft.demo.model.entity.Role;
+import vn.rikkeisoft.demo.entity.AccountEntity;
+import vn.rikkeisoft.demo.entity.Role;
 import vn.rikkeisoft.demo.repositories.AccountRepository;
 import vn.rikkeisoft.demo.repositories.RoleRepository;
 
@@ -36,7 +36,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 
         //Create Admin
         if (accountRepository.findByUsername("admin") == null) {
-            Account admin = new Account();
+            AccountEntity admin = new AccountEntity();
             admin.setUsername("admin");
             admin.setPassword(passwordEncoder.encode("123456"));
             admin.setFullName("Nguyen Quang Ha");
@@ -50,7 +50,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 
         //Create Member
         if (accountRepository.findByUsername("member1") == null) {
-            Account user = new Account();
+            AccountEntity user = new AccountEntity();
             user.setUsername("member1");
             user.setPassword(passwordEncoder.encode("123456"));
             user.setFullName("Nguyen Van A");

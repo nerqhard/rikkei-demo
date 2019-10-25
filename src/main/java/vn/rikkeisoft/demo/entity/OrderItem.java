@@ -1,6 +1,5 @@
-package vn.rikkeisoft.demo.model.entity;
+package vn.rikkeisoft.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

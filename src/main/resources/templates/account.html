@@ -11,7 +11,7 @@
         </div>
         <table class="table table-bordered" th:if="${#lists.isEmpty(accountList)}">
             <div class="alert alert-warning">
-                <strong>There are no account to show the view !!!</strong>
+                <strong>There are no accountEntity to show the view !!!</strong>
             </div>
 
         </table>
@@ -21,30 +21,26 @@
                 <th width="120px">Username</th>
                 <th>Full Name</th>
                 <th>Role</th>
-                <th width="100px">Active</th>
                 <th width="100px">Action</th>
             </tr>
             <tbody>
-            <tr th:each="account, i : ${accountList}">
+            <tr th:each="accountEntity, i : ${accountList}">
                 <td>
                     <span th:text="${i.index + 1}"></span>
                 </td>
                 <td>
-                    <span th:text="${account.username}"></span>
+                    <span th:text="${accountEntity.username}"></span>
                 </td>
                 <td>
-                    <span th:text="${account.fullName}"></span>
+                    <span th:text="${accountEntity.fullName}"></span>
                 </td>
                 <td>
                     <select class="custom-select authority-select">
-                        <option th:each="role : ${account.roles}" th:value="${{role.id}}"
+                        <option th:each="role : ${accountEntity.roles}" th:value="${{role.id}}"
                                 th:text="${#strings.substring(role.role, 5)}"
-                                th:selected="${#lists.contains(account.roles, role.id)}">Option 2
+                                th:selected="${#lists.contains(accountEntity.roles, role.id)}">Option 2
                         </option>
                     </select>
-                </td>
-                <td>
-                    <span th:text="${account.active}"></span>
                 </td>
                 <td>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>

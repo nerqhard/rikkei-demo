@@ -3,13 +3,12 @@ package vn.rikkeisoft.demo.common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import vn.rikkeisoft.demo.model.entity.Account;
-import vn.rikkeisoft.demo.model.entity.Role;
+import vn.rikkeisoft.demo.entity.AccountEntity;
+import vn.rikkeisoft.demo.entity.Role;
 import vn.rikkeisoft.demo.repositories.AccountRepository;
 
 import javax.transaction.Transactional;
@@ -28,20 +27,20 @@ public class DomainUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Account account = accountRepository.findByUsername(username);
-        if (account == null) {
+        AccountEntity accountEntity = accountRepository.findByUsername(username);
+        if (accountEntity == null) {
             throw new UsernameNotFoundException("User" + username + "was not found in the database");
         }
 
         //Thiet lap Role cho Account
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        Set<Role> roles = account.getRoles();
+        Set<Role> roles = accountEntity.getRoles();
         for (Role role : roles) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
 
         //return ra 1 implementation của UserDetails, co chua Username va Password va Quyen cua Account
         return new org.springframework.security.core.userdetails.User(
-                account.getUsername(), account.getPassword(), grantedAuthorities);
+                accountEntity.getUsername(), accountEntity.getPassword(), grantedAuthorities);
     }
 }

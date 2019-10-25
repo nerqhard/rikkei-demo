@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import vn.rikkeisoft.demo.model.entity.Order;
+import vn.rikkeisoft.demo.entity.Order;
 import vn.rikkeisoft.demo.repositories.OrderItemRepository;
 import vn.rikkeisoft.demo.repositories.OrderRepository;
 

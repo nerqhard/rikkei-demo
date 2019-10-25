@@ -1,4 +1,4 @@
-package vn.rikkeisoft.demo.model.entity;
+package vn.rikkeisoft.demo.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Data
@@ -14,13 +15,13 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "Accounts")
-public class Account implements Serializable {
+public class AccountEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long id;
+    private Long id;
 
     @Column
     private String username;
@@ -31,8 +32,8 @@ public class Account implements Serializable {
     @Column
     private String password;
 
-    @Column
-    private boolean active;
+    @Column(name = "create_date")
+    private Timestamp createDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
