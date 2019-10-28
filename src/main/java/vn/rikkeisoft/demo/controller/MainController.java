@@ -7,11 +7,9 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import vn.rikkeisoft.demo.service.AccountService;
 import vn.rikkeisoft.demo.service.dto.AccountDTO;
-import vn.rikkeisoft.demo.service.mapper.AccountMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +29,6 @@ public class MainController {
 
     @GetMapping("/login")
     public String getLogin(Model model) {
-        model.addAttribute("pageTitle", "Login");
         //Neu da dang nhap, co Authentication => ko the vao trang login
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getCredentials() == null) {
@@ -63,7 +60,6 @@ public class MainController {
 
     @GetMapping("/register")
     public String goToRegister(Model model) {
-        model.addAttribute("pageTitle", "Register");
         AccountDTO accountDTO = new AccountDTO();
         model.addAttribute("accountDTO", accountDTO);
         return "register";
@@ -91,4 +87,9 @@ public class MainController {
         }
     }
 
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public void delete(@RequestBody AccountDTO dto) {
+        accountService.delete(dto.getId());
+    }
 }

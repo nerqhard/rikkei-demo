@@ -18,16 +18,16 @@ public class AccountDTO {
 
     private long id;
 
-    @NotEmpty(message = "Not to empty")
-    @Size(min = 8, max = 32, message = "Between 8 to 32 characters")
-    @Pattern(regexp = "^[a-zA-Z0-9]{8,32}", message = "Character a-z, A-Z, 0-9")
+    @NotEmpty(message = "Not to empty!")
+    @Size(min = 8, max = 32, message = "Between 8 to 32 characters!")
+    @Pattern(regexp = "^[a-zA-Z0-9]{8,32}", message = "Character a-z, A-Z, 0-9!")
     private String username;
 
-    @NotEmpty(message = "Not to empty")
+    @NotEmpty(message = "Not to empty!")
     private String fullName;
 
-    @NotEmpty(message = "Not to empty")
-    @Size(min = 8, message = "Passwords must be at least 8 characters")
+    @NotEmpty(message = "Not to empty!")
+    @Size(min = 6, message = "Passwords must be at least 6 characters!")
     private String password;
 
     private Timestamp createDate;

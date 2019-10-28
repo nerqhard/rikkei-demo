@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 //Xac dinh day la lop dung de cau hinh
 @Configuration
@@ -42,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 //Vo hieu hoa yeu cau gia mao
                 .csrf().disable()
+                .addFilterAt(new CustomFillter(domainUserDetailsService), UsernamePasswordAuthenticationFilter.class)
                 //Phan quyen request
                 //antMatchers() Khai bao duong dan cua request
                 //permitAll() Cho tat ca User duoc truy cap

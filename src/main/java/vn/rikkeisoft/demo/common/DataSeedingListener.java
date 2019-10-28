@@ -12,6 +12,7 @@ import vn.rikkeisoft.demo.repositories.RoleRepository;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
+
 @Component
 public class DataSeedingListener implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -40,26 +41,13 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             AccountEntity admin = new AccountEntity();
             admin.setUsername("admin1234");
             admin.setPassword(passwordEncoder.encode("123456"));
-            admin.setFullName("Nguyen Quang Ha");
+            admin.setFullName("Administrator");
             admin.setCreateDate(new Timestamp(System.currentTimeMillis()));
             HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByRole("ROLE_ADMIN"));
             roles.add(roleRepository.findByRole("ROLE_MEMBER"));
             admin.setRoles(roles);
             accountRepository.save(admin);
-        }
-
-        //Create Member
-        if (accountRepository.findByUsername("member1234") == null) {
-            AccountEntity user = new AccountEntity();
-            user.setUsername("member1234");
-            user.setPassword(passwordEncoder.encode("123456"));
-            user.setFullName("Nguyen Van A");
-            user.setCreateDate(new Timestamp(System.currentTimeMillis()));
-            HashSet<Role> roles = new HashSet<>();
-            roles.add(roleRepository.findByRole("ROLE_MEMBER"));
-            user.setRoles(roles);
-            accountRepository.save(user);
         }
     }
 }

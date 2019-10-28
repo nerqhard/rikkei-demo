@@ -26,6 +26,7 @@ body {
 
 table.table {
     table-layout: fixed;
+    margin-bottom: 0;
 }
 
 .table-wrapper {
@@ -80,4 +81,12 @@ table.table td a.delete {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+.delete-access {
+    background-color: #FF1C19;
+    border: none;
+}
+.delete-nonaccess {
+    background-color: dodgerblue;
+    border: none;
 }
