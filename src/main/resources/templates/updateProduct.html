@@ -1,0 +1,52 @@
+<th:block th:fragment="updateProduct" xmlns:th="http://www.thymeleaf.org">
+    <div class="modal fade" id="updateProduct">
+        <form class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" style="margin: auto"><b>Edit Product</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" style="margin-left: 0">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group div-1">
+                        <label for="code" class="col-sm-3 control-label"><b>Code</b></label>
+                        <input type="text" id="code" name="code" class="form-control" autofocus/>
+                    </div>
+                    <div class="form-group div-1">
+                        <label for="namePr" class="col-sm-3 control-label"><b>Name</b></label>
+                        <input type="text" id="namePr" name="name" class="form-control" autofocus/>
+                    </div>
+                    <div class="form-group div-1">
+                        <label for="pricePr" class="col-sm-3 control-label"><b>Price</b></label>
+                        <div class="input-group">
+                            <input type="text" id="pricePr" name="price" style="text-align: right"
+                                   placeholder="Product price..." class="form-control currency"
+                                   autofocus>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group div-1">
+                        <label class="col-sm-3 control-label" style="max-width: 100%;"><b>Product image</b></label>
+                        <div class="input-group">
+<!--                            <span class="input-group-btn">-->
+                                <span class="btn btn-default btn-file">
+                                    <input type="file" id="imgInp"name="image" readonly>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" id="btn-update-product" class="btn save-product">Update</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</th:block>

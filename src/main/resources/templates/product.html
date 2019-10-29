@@ -33,20 +33,20 @@
                 <td>
                     <span th:text="${i.index + 1}"></span>
                 </td>
-                <td>
+                <td class="insert-code">
                     <span th:text="${product.code}"></span>
                 </td>
-                <td>
+                <td class="insert-name">
                     <span th:text="${product.name}"></span>
                 </td>
-                <td>
+                <td class="insert-price">
                     <span th:text="${product.price}"></span>
                 </td>
-                <td>
+                <td class="insert-image">
                     <span th:text="${product.image}"></span>
                 </td>
                 <td>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    <a class="edit-product" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                     <a class="delete-product" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
@@ -72,7 +72,10 @@
             </div>
         </form>
     </div>
+
+
     <div th:replace="addProduct :: addProduct"> </div>
+    <div th:replace="updateProduct :: updateProduct"> </div>
 </div>
 <th:block th:replace="common/footer :: footer"></th:block>
 </html>

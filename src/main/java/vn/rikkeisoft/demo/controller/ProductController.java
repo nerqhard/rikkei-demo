@@ -21,20 +21,17 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value = {"/", "/**"})
-    public String get(Model model, @RequestParam(value = "successMessage", required = false) String msg) {
+    @GetMapping(value = {"/"})
+    public String get(Model model) {
         model.addAttribute("productList", productRepository.findAll());
         ProductDTO productDTO = new ProductDTO();
         model.addAttribute("productDTO", productDTO);
-        if (msg != null && msg.equals("1")) {
-            model.addAttribute("successMessage", "Add product successfully...");
-        }
         return "product";
     }
 
     @PostMapping("/")
     public String saveProduct(ProductDTO productDTO) {
         productService.save(productDTO);
-        return "redirect:/products/?successMessage=1";
+        return "redirect:/products/";
     }
 }
