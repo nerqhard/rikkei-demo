@@ -26,9 +26,6 @@ public class AccoutServiceImp implements AccountService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private AccountMapper accountMapper;
 
     @Override
@@ -66,8 +63,6 @@ public class AccoutServiceImp implements AccountService {
 
     @Override
     public AccountDTO findByUsername(String name) {
-//        AccountEntity entity = accountRepository.findByUsername(name);
-//        return accountMapper.toDto(entity);
 
         return Optional.ofNullable(accountRepository.findByUsername(name)).map(accountMapper::toDto).orElse(null);
     }

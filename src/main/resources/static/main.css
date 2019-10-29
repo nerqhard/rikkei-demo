@@ -90,3 +90,29 @@ table.table td a.delete {
     background-color: dodgerblue;
     border: none;
 }
+.table-title .add-new {
+    float: right;
+    height: 30px;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: none;
+    min-width: 100px;
+    border-radius: 50px;
+    line-height: 0px;
+}
+.table-title .add-new i {
+    margin-right: 5px;
+    color: white;
+}
+.save-product {
+    background-color: #0aff0f;
+    border: none;
+}
+delete-y-product {
+    background-color: #FF1C19;
+    border: none;
+}
+delete-n-product {
+    background-color: dodgerblue;
+    border: none;
+}

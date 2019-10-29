@@ -15,7 +15,7 @@ public class MainRestController {
     @Autowired
     AccountRepository accountRepository;
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/account/delete")
     public ResponseEntity<Void> deleteUser(@RequestBody AccountDTO dto) {
         accountRepository.deleteById(dto.getId());
         return ResponseEntity.ok().build();

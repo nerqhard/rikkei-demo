@@ -8,9 +8,8 @@ $(document).ready(function () {
     $(".delete-access").click(function () {
 
         var id = $('#myModal').find('.delete-access').attr('data-id');
-        console.log(id);
         $.ajax({
-            url: "/api/delete",
+            url: "/api/account/delete",
             type: "DELETE",
             data: JSON.stringify({
                 id: parseInt(id)
