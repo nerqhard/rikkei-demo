@@ -37,9 +37,9 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
         }
 
         //Create Admin
-        if (accountRepository.findByUsername("admin1234") == null) {
+        if (accountRepository.findByUsername("administrator") == null) {
             AccountEntity admin = new AccountEntity();
-            admin.setUsername("admin1234");
+            admin.setUsername("administrator");
             admin.setPassword(passwordEncoder.encode("123456"));
             admin.setFullName("Administrator");
             admin.setCreateDate(new Timestamp(System.currentTimeMillis()));

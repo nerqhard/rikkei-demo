@@ -11,6 +11,7 @@ public class ProductMapper implements EntityMapper<ProductDTO, Product> {
     @Override
     public Product toEntity(ProductDTO dto) {
         Product entity = new Product();
+        entity.setId(dto.getId());
         entity.setCode(dto.getCode());
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
@@ -22,6 +23,7 @@ public class ProductMapper implements EntityMapper<ProductDTO, Product> {
     @Override
     public ProductDTO toDto(Product entity) {
         ProductDTO dto = new ProductDTO();
+        dto.setId(entity.getId());
         dto.setCode(entity.getCode());
         dto.setName(entity.getName());
         dto.setPrice(entity.getPrice());

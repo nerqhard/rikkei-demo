@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $(".add-new").click(function () {
         $('#modalProduct').modal("toggle");
     })
@@ -20,32 +21,28 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             success: function (value) {
                 $('.table').find('.rowpr-' + id).remove();
-                location.reload();
+                $('#modalDelPro').modal("toggle");
+                // location.reload();
             },
             error: function () {
                 alert('error')
             }
         })
     })
+    // Khi nhan btn Edit
     $(".edit-product").click(function () {
-        $('input[name ="code"]').css("border-color", "#ced4da");
-        $('input[name ="name"]').css("border-color", "#ced4da");
-        $('input[name ="price"]').css("border-color", "#ced4da");
-        $('input[name ="image"]').css("border-color", "#ced4da");
         var id = $(this).closest('tr').attr("data-id");
         console.log(id);
-
         $.ajax({
             type: 'GET',
             url: '/api/products/' + id,
             contentType: 'application/json; charset=utf-8',
-            cache: false,
             success: function (data) {
                 $("#updateProduct").find('#btn-update-product').attr("data-id", id);
-                $('input[name ="code"]').val(data.code);
-                $('input[name ="name"]').val(data.name);
-                $('input[name ="price"]').val(data.price);
-                $('input[name ="image"]').val(data.image);
+                $("#updateProduct").find("#codePr").val(data.code);
+                $("#updateProduct").find("#namePr").val(data.name);
+                $("#updateProduct").find("#pricePr").val(data.price);
+                $("#updateProduct").find("#imgInp").val(data.image);
                 $('#updateProduct').modal('toggle');
             },
             error: function (error) {
@@ -53,19 +50,23 @@ $(document).ready(function () {
             }
         })
     })
-    $('#btn-update-product').click(function () {
-        var id = $("#updateProduct").find('#btn-update-product').attr("data-id");
-        console.log(id);
-        var code = $('input[name ="code"]').val();
-        var name = $('input[name ="name"]').val();
-        var price = $('input[name ="price"]').val();
-        var image = $('input[name ="image"]').val();
-        $('#updateProduct').modal('toggle');
 
+    //Khi nhan btn Save
+    $('#btn-update-product').click(function () {
+        // Lấy giá trị id của hàng cần update
+        var id = $("#updateProduct").find('#btn-update-product').attr("data-id");
+        // Lấy giá trị của hàng cần update
+        var code = $("#updateProduct").find("#codePr").val();
+        var name = $("#updateProduct").find("#namePr").val();
+        var price = $("#updateProduct").find("#pricePr").val();
+        var image = $("#updateProduct").find("#imgInp").val();
+
+        $('#updateProduct').modal('toggle');
         $.ajax({
-            type: 'PUT',
-            url: '/api/products',
-            contentType: 'application/json',
+            type: 'PUT', //Phương thức tương ứng là PUT
+            url: '/api/products', //Gửi request tới server theo đường dẫn /api/products
+            dataType: 'json', //Data gửi đi dạng Json
+            //cover 1 doi tuong Js thanh 1 chuoi Json
             data: JSON.stringify({
                 id: id,
                 code: code,
@@ -73,14 +74,16 @@ $(document).ready(function () {
                 price: price,
                 image: image
             }),
-            dataType: 'json',
-            responseType: 'application/json',
 
-            success: function (data) {
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-code").text(data.code);
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-name").text(data.name);
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-price").text(data.price);
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-image").text(data.image);
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) { //Sau khi Ajax nhận được Data từ server trả về và product được save
+
+
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-code").prop(data.code);
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-name").prop(data.name);
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-price").prop(data.price);
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-image").prop(data.image);
+                location.reload();
             },
             error: function (error) {
                 snackbarError();
