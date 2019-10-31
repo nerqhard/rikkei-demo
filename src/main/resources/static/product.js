@@ -1,13 +1,13 @@
 $(document).ready(function () {
-
     $(".add-new").click(function () {
         $('#modalProduct').modal("toggle");
     })
 
+    //Delete
     $(".delete-product").click(function () {
         var id = $(this).closest("tr").attr("data-id");
-        $('#modalDelPro').modal("toggle");
         $('#modalDelPro').find(".delete-y-product").attr("data-id", id);
+        $('#modalDelPro').modal("toggle");
     })
 
     $(".delete-y-product").click(function () {
@@ -21,8 +21,8 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             success: function (value) {
                 $('.table').find('.rowpr-' + id).remove();
+                location.reload();
                 $('#modalDelPro').modal("toggle");
-                // location.reload();
             },
             error: function () {
                 alert('error')
@@ -32,7 +32,6 @@ $(document).ready(function () {
     // Khi nhan btn Edit
     $(".edit-product").click(function () {
         var id = $(this).closest('tr').attr("data-id");
-        console.log(id);
         $.ajax({
             type: 'GET',
             url: '/api/products/' + id,
@@ -45,8 +44,8 @@ $(document).ready(function () {
                 $("#updateProduct").find("#imgInp").val(data.image);
                 $('#updateProduct').modal('toggle');
             },
-            error: function (error) {
-                snackbarError();
+            error: function () {
+                alert('error');
             }
         })
     })
@@ -61,7 +60,6 @@ $(document).ready(function () {
         var price = $("#updateProduct").find("#pricePr").val();
         var image = $("#updateProduct").find("#imgInp").val();
 
-        $('#updateProduct').modal('toggle');
         $.ajax({
             type: 'PUT', //Phương thức tương ứng là PUT
             url: '/api/products', //Gửi request tới server theo đường dẫn /api/products
@@ -77,17 +75,49 @@ $(document).ready(function () {
 
             contentType: 'application/json; charset=utf-8',
             success: function (data) { //Sau khi Ajax nhận được Data từ server trả về và product được save
-
-
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-code").prop(data.code);
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-name").prop(data.name);
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-price").prop(data.price);
-                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-image").prop(data.image);
-                location.reload();
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-code").text(data.code);
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-name").text(data.name);
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-price").text(data.price);
+                $("tbody").find("tr[data-id='" + data.id + "']").find(".insert-image").text(data.image);
+                $('#updateProduct').modal('toggle');
             },
-            error: function (error) {
-                snackbarError();
+            error: function () {
+                alert('error');
             }
+        })
+    })
+
+    //Mua hang, khi nhan Buy
+    $(".buy-pr").click(function () {
+        var id = $(this).closest('tr').attr("data-id");
+        $.ajax({
+            type: 'GET',
+            url: '/api/products/buy/' + id,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#buyProduct").find('#buy-pr').attr("data-id", id);
+                $("#namePrForm").text(data.name);
+                $('#buyProduct').modal('toggle');
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+
+    })
+
+    $(".btn-buy-product").click(function () {
+        var id = $("#buyProduct").find('#buy-pr').attr("data-id");
+        var num = $("#numberPr").val();
+        $('#buyProduct').modal('toggle');
+        $.ajax({
+            type: 'POST',
+            url: '/api/products/buy',
+            dataType: 'json',
+            data: JSON.stringify({
+                id: id,
+                code: num,
+            }),
         })
     })
 })

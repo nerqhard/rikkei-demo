@@ -43,4 +43,14 @@ public class ProductRestController {
 
         return ResponseEntity.ok(dto);
     }
+    @GetMapping("/products/buy/{id}")
+    public ResponseEntity<ProductDTO> buyProduct(@PathVariable(name = "id") Long id) {
+        ProductDTO dto = productService.findById(id);
+        return ResponseEntity.ok(dto);
+    }
+//    @PostMapping("/products/buy/")
+//    public ResponseEntity<Ot> accessNumBuy() {
+//        ProductDTO dto = productService.findById();
+//        return ResponseEntity.ok(dto);
+//    }
 }

@@ -8,9 +8,12 @@
             <div class="row">
                 <div class="container" style="text-align: center"><h2><b>Product Details</b></h2></div>
                 <div class="col-sm-4" style="flex: none; max-width: none">
-                    <button class="btn btn-info add-new" style="color: white !important;" title="Add New Product"><i class="fa fa-plus" aria-hidden="true"></i>Add Product</button>
+                    <button th:if="${#request.isUserInRole('ADMIN')}" class="btn btn-info add-new"
+                            style="color: white !important;" title="Add New Product"><i class="fa fa-plus"
+                                                                                        aria-hidden="true"></i>Add
+                        Product
+                    </button>
                 </div>
-                <p class="text-success" style="margin: 0 0 0 20px" th:if="${successMessage}" th:text="${successMessage}"/>
             </div>
         </div>
         <table class="table table-bordered" th:if="${#lists.isEmpty(productList)}">
@@ -22,18 +25,21 @@
         <table class="table table-bordered" th:if="${not #lists.isEmpty(productList)}">
             <tr class="header-color" style="text-align: center">
                 <th width="50px">#</th>
-                <th width="120px">Code</th>
+                <th width="120px" th:if="${#request.isUserInRole('ADMIN')}">Code</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Image</th>
-                <th width="100px">Action</th>
+                <th width="100px" th:if="${#request.isUserInRole('ADMIN')}">Action</th>
+                <th width="100px" th:if="${#request.isUserInRole('MEMBER')}"></th>
+
             </tr>
             <tbody>
-            <tr th:each="product, i : ${productList}" th:data-id="${product.id}" th:classappend= "'rowpr-' + ${product.id}">
+            <tr th:each="product, i : ${productList}" th:data-id="${product.id}"
+                th:classappend="'rowpr-' + ${product.id}">
                 <td>
                     <span th:text="${i.index + 1}"></span>
                 </td>
-                <td class="insert-code">
+                <td class="insert-code" th:if="${#request.isUserInRole('ADMIN')}">
                     <span th:text="${product.code}"></span>
                 </td>
                 <td class="insert-name">
@@ -45,16 +51,24 @@
                 <td class="insert-image">
                     <span th:text="${product.image}"></span>
                 </td>
-                <td>
-                    <a class="edit-product" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete-product" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                <td th:if="${#request.isUserInRole('ADMIN')}">
+                    <a class="edit-product" title="Edit" data-toggle="tooltip"><i
+                            class="material-icons">&#xE254;</i></a>
+                    <a class="delete-product" title="Delete" data-toggle="tooltip"><i
+                            class="material-icons">&#xE872;</i></a>
+                </td>
+                <td th:if="${#request.isUserInRole('MEMBER')}">
+                    <button type="button" class="btn btn-default btn-sm buy-pr">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Buy
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="modal fade"  id="modalDelPro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <form class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal fade" id="modalDelPro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <form class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Remove Product</h5>
@@ -66,16 +80,44 @@
                     Do you want to remove the product from the list?
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary delete-y-product">Yes</button>
+                    <a type="button" class="btn btn-secondary delete-y-product">Yes</a>
                     <button type="button" class="btn btn-primary delete-n-product" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal fade" id="buyProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <form class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buy Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group div-1">
+                        <label class="col-sm-3 control-label">Product</label>
+                        <h3 style="color: red; text-align: center" id="namePrForm"> Tên sản phẩm </h3>
+                    </div>
+                    <div class="form-group div-1">
+                        <label for="numberPr" class="col-sm-3 control-label">Number</label>
+                        <input type="text" pattern="[0-9]{1,9}" id="numberPr" name="name"
+                               style="margin: auto; width: 200px; text-align: center" class="form-control" autofocus/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-buy-product">Buy</button>
+                    <button type="button" class="btn btn-primary " data-dismiss="modal">Cancer</button>
                 </div>
             </div>
         </form>
     </div>
 
 
-    <div th:replace="addProduct :: addProduct"> </div>
-    <div th:replace="updateProduct :: updateProduct"> </div>
+    <div th:replace="addProduct :: addProduct"></div>
+    <div th:replace="updateProduct :: updateProduct"></div>
 </div>
 <th:block th:replace="common/footer :: footer"></th:block>
 </html>

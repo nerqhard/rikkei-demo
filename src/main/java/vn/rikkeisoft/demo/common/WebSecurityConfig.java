@@ -50,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //hasAnyRole(roleName) Chi cho phep cac user co GrantedAuthority la roleName moi truy cap
                 .authorizeRequests()
                 .antMatchers("/login", "/logout", "/registration").permitAll()
-                .antMatchers("/","/products/").hasAnyRole("MEMBER", "ADMIN")
-                .antMatchers("/admin","/accounts/","/orders/").hasAnyRole("ADMIN")
+                .antMatchers("/","/products/","/orders/").hasAnyRole("MEMBER", "ADMIN")
+                .antMatchers("/admin","/accounts/").hasAnyRole("ADMIN")
                 .and()
                 //Dang nhap
                 .formLogin()
