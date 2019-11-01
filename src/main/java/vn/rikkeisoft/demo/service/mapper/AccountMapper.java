@@ -12,6 +12,7 @@ public class AccountMapper implements EntityMapper<AccountDTO, AccountEntity> {
     @Override
     public AccountEntity toEntity(AccountDTO dto) {
         AccountEntity entity = new AccountEntity();
+        entity.setId(dto.getId());
         entity.setUsername(dto.getUsername());
         entity.setEmail(dto.getEmail());
         entity.setFullName(dto.getFullName());
@@ -22,6 +23,7 @@ public class AccountMapper implements EntityMapper<AccountDTO, AccountEntity> {
     @Override
     public AccountDTO toDto(AccountEntity entity) {
         AccountDTO dto = new AccountDTO();
+        dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
         dto.setFullName(entity.getFullName());
         dto.setEmail(entity.getEmail());

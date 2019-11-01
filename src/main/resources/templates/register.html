@@ -24,6 +24,11 @@
             <input type="password" th:field="*{password}" id="password" placeholder="Password..." class="form-control">
             <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="lable-error"></label>
         </div>
+        <div class="form-group div-1">
+            <label for="email" class="col-sm-3 control-label">Email*</label>
+            <input type="text" th:field="*{email}" id="email" placeholder="Email address..." class="form-control">
+            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="lable-error"></label>
+        </div>
         <input type="submit" class="fadeIn fourth" style="margin: 20px" value="Register">
     </form> <!-- /form -->
 </div> <!-- ./container -->

@@ -2,6 +2,7 @@ package vn.rikkeisoft.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -74,7 +75,7 @@ public class ForgotPasswordController {
 
         Map<String, Object> model = new HashMap<>();
         model.put("token", token);
-        model.put("user", dto);
+        model.put("dto", dto);
         model.put("signature", "quangha12thxd@gmail.com");
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         model.put("resetUrl", url + "/reset-password?token=" + token.getToken());

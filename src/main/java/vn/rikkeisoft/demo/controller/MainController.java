@@ -28,7 +28,7 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String getLogin(Model model) {
+    public String getLogin() {
         //Neu da dang nhap, co Authentication => ko the vao trang login
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getCredentials() == null) {

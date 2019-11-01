@@ -20,6 +20,7 @@
                 <th width="50px">#</th>
                 <th>Username</th>
                 <th>Full Name</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th width="100px">Action</th>
             </tr>
@@ -34,6 +35,9 @@
                 </td>
                 <td>
                     <span th:text="${account.fullName}"></span>
+                </td>
+                <td>
+                    <span th:text="${account.email}"></span>
                 </td>
                 <td>
                     <select class="custom-select authority-select">

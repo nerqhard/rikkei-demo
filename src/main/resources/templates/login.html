@@ -14,6 +14,9 @@
             <p th:if="${param.error}" class="error">
                 <span style="font-size:12px; color: #FF1C19;">Email or Password invalid, please verify!</span>
             </p>
+            <div align="center" th:if="${param.resetSuccess}">
+                <p style="font-size: 13px; color: #34ce57;">Change password success</p>
+            </div>
             <p class="text-success" th:if="${successMessage}" th:text="${successMessage}"/>
         </div>
 

@@ -68,4 +68,11 @@ public class AccoutServiceImp implements AccountService {
         return Optional.ofNullable(accountRepository.findByEmail(email)).map(accountMapper::toDto).orElse(null);
     }
 
+    @Override
+    public void updatePassword(String password, Long id) {
+        AccountEntity entity = accountRepository.findById(id).get();
+        entity.setPassword(password);
+        accountRepository.save(entity);
+    }
+
 }

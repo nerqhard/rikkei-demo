@@ -42,6 +42,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             admin.setUsername("administrator");
             admin.setPassword(passwordEncoder.encode("123456"));
             admin.setFullName("Administrator");
+            admin.setEmail("quangha.fresher@gmail.com");
             admin.setCreateDate(new Timestamp(System.currentTimeMillis()));
             HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByRole("ROLE_ADMIN"));

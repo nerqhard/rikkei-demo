@@ -16,4 +16,6 @@ public interface AccountService {
     AccountDTO findByUsername(String name);
 
     AccountDTO findByEmail(String email);
+
+    void updatePassword(String password, Long id);
 }
