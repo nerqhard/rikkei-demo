@@ -30,6 +30,9 @@ public class AccountEntity implements Serializable {
     private String fullName;
 
     @Column
+    private String email;
+
+    @Column
     private String password;
 
     @Column(name = "create_date")

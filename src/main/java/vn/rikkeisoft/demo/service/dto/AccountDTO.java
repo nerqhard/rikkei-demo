@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import vn.rikkeisoft.demo.entity.Role;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -22,6 +24,10 @@ public class AccountDTO {
     @Size(min = 8, max = 32, message = "Between 8 to 32 characters!")
     @Pattern(regexp = "^[a-zA-Z0-9]{8,32}", message = "Character a-z, A-Z, 0-9!")
     private String username;
+
+    @Email(regexp = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{1,}[.]{1}[a-zA-Z]{2,}", message = "Email is not valid! Example: useremail@mail.com.")
+    @NotEmpty
+    private String email;
 
     @NotEmpty(message = "Not to empty!")
     private String fullName;

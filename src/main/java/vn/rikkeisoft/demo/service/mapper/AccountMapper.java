@@ -13,6 +13,7 @@ public class AccountMapper implements EntityMapper<AccountDTO, AccountEntity> {
     public AccountEntity toEntity(AccountDTO dto) {
         AccountEntity entity = new AccountEntity();
         entity.setUsername(dto.getUsername());
+        entity.setEmail(dto.getEmail());
         entity.setFullName(dto.getFullName());
         entity.setCreateDate(new Timestamp(System.currentTimeMillis()));
         return entity;
@@ -23,6 +24,7 @@ public class AccountMapper implements EntityMapper<AccountDTO, AccountEntity> {
         AccountDTO dto = new AccountDTO();
         dto.setUsername(entity.getUsername());
         dto.setFullName(entity.getFullName());
+        dto.setEmail(entity.getEmail());
         dto.setPassword(entity.getPassword());
         dto.setRoles(entity.getRoles());
         dto.setCreateDate(entity.getCreateDate());

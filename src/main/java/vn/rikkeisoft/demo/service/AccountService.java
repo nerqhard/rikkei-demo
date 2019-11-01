@@ -15,4 +15,5 @@ public interface AccountService {
 
     AccountDTO findByUsername(String name);
 
+    AccountDTO findByEmail(String email);
 }
