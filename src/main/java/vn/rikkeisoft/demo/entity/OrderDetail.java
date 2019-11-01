@@ -6,31 +6,28 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Orders")
-public class Order implements Serializable {
+@Table(name = "OrderItems")
+public class OrderDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderItem> orderItems;
-
-    @Column(name = "order_date")
-    private Date orderDate;
+    @ManyToOne
+    @JoinColumn
+    private Product product;
 
     @Column
-    private double amount;
+    private int quantity;
 
-    @ManyToOne
-    private Customer customer;
+    @Column
+    private double price;
 }

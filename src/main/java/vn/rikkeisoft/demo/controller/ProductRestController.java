@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.rikkeisoft.demo.repositories.ProductRepository;
+import vn.rikkeisoft.demo.service.OrderDetailService;
 import vn.rikkeisoft.demo.service.ProductService;
+import vn.rikkeisoft.demo.service.dto.OrderDetailDTO;
 import vn.rikkeisoft.demo.service.dto.ProductDTO;
 import vn.rikkeisoft.demo.service.mapper.ProductMapper;
 
@@ -19,6 +21,9 @@ public class ProductRestController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    OrderDetailService orderDetailService;
 
     @DeleteMapping("/products/delete")
     public void deleteProduct(@RequestBody ProductDTO dto) {
@@ -48,9 +53,10 @@ public class ProductRestController {
         ProductDTO dto = productService.findById(id);
         return ResponseEntity.ok(dto);
     }
-//    @PostMapping("/products/buy/")
-//    public ResponseEntity<Ot> accessNumBuy() {
-//        ProductDTO dto = productService.findById();
-//        return ResponseEntity.ok(dto);
-//    }
+    @PostMapping("/products/buy/")
+    public ResponseEntity<OrderDetailDTO> accessNumBuy(@RequestBody OrderDetailDTO orderDetailDTO) {
+        orderDetailDTO.setPrice(productService.findById(orderDetailDTO.getProductId()).getPrice());
+        orderDetailService.save(orderDetailDTO);
+        return ResponseEntity.ok(orderDetailDTO);
+    }
 }

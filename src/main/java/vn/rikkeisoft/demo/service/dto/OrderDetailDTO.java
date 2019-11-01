@@ -8,11 +8,12 @@ import vn.rikkeisoft.demo.entity.Product;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OtherDetailDTO {
+public class OrderDetailDTO {
 
     private long id;
-    private Product product;
+    private Long productId;
     private int quantity;
     private double price;
+
 
 }

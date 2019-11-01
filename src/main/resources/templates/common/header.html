@@ -15,7 +15,7 @@
                     <a class="nav-link" th:href="@{/products/}">Product<span ></span></a>
                 </li>
                 <li class="nav-item" th:if="${#request.isUserInRole('MEMBER')}">
-                    <a class="nav-link" th:href="@{/orders/}">My Cart<span ></span></a>
+                    <a class="nav-link" th:href="@{/mycart/}">My Cart<span ></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:if="${#request.isUserInRole('ADMIN')}" th:href="@{/orders/}">Order<span ></span></a>

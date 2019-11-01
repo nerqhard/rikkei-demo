@@ -15,6 +15,10 @@ import java.util.Date;
 @Table(name = "Products")
 public class Product implements Serializable {
 
+    public Product(Long id) {
+        this.id = id;
+    }
+
     private static final long serialVersionUID = 1L;
 
     @Id

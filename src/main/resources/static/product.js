@@ -95,7 +95,7 @@ $(document).ready(function () {
             url: '/api/products/buy/' + id,
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                $("#buyProduct").find('#buy-pr').attr("data-id", id);
+                $("#buyProduct").find('.btn-buy-product').attr("data-id", id);
                 $("#namePrForm").text(data.name);
                 $('#buyProduct').modal('toggle');
             },
@@ -103,21 +103,29 @@ $(document).ready(function () {
                 alert('error');
             }
         })
-
     })
 
     $(".btn-buy-product").click(function () {
-        var id = $("#buyProduct").find('#buy-pr').attr("data-id");
+        var id = $("#buyProduct").find('.btn-buy-product').attr("data-id");
         var num = $("#numberPr").val();
         $('#buyProduct').modal('toggle');
+
         $.ajax({
             type: 'POST',
-            url: '/api/products/buy',
+            url: '/api/products/buy/',
             dataType: 'json',
             data: JSON.stringify({
-                id: id,
-                code: num,
+                productId: id,
+                quantity: num
             }),
+            contentType: 'application/json; charset=utf-8',
+            success: function () {
+                alert("Buy success!")
+            },
+            error: function () {
+                alert("Buy fail!")
+            }
+
         })
     })
 })

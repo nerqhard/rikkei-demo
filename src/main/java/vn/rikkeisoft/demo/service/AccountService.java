@@ -1,8 +1,6 @@
 package vn.rikkeisoft.demo.service;
 
 import vn.rikkeisoft.demo.service.dto.AccountDTO;
-
-
 import java.util.List;
 
 public interface AccountService {
