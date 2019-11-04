@@ -30,7 +30,7 @@
                 <th>Price</th>
                 <th>Image</th>
                 <th width="100px" th:if="${#request.isUserInRole('ADMIN')}">Action</th>
-                <th width="100px" th:if="${#request.isUserInRole('MEMBER')}"></th>
+                <th width="100px" th:unless="${#request.isUserInRole('ADMIN')}"></th>
 
             </tr>
             <tbody>
@@ -57,7 +57,7 @@
                     <a class="delete-product" title="Delete" data-toggle="tooltip"><i
                             class="material-icons">&#xE872;</i></a>
                 </td>
-                <td th:if="${#request.isUserInRole('MEMBER')}">
+                <td th:unless="${#request.isUserInRole('ADMIN')}">
                     <button type="button" class="btn btn-default btn-sm buy-pr">
                         <span class="glyphicon glyphicon-shopping-cart"></span> Buy
                     </button>
