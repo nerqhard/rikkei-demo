@@ -2,13 +2,11 @@ package vn.rikkeisoft.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import vn.rikkeisoft.demo.entity.AccountEntity;
 import vn.rikkeisoft.demo.entity.PasswordResetToken;
 import vn.rikkeisoft.demo.repositories.PasswordResetTokenRepository;
 import vn.rikkeisoft.demo.service.AccountService;
@@ -47,7 +45,7 @@ public class ForgotPasswordController {
 
     @GetMapping
     public String displayForgotPasswordPage() {
-        return "password/forgotpassword";
+        return "password/forgotPassword";
     }
 
     @PostMapping
@@ -55,13 +53,13 @@ public class ForgotPasswordController {
                                             BindingResult result,
                                             HttpServletRequest request) {
         if (result.hasErrors()){
-            return "forgot-password";
+            return "password/forgotPassword";
         }
 
         AccountDTO dto = accountService.findByEmail(form.getEmail());
         if (dto == null){
             result.rejectValue("email", null, "We could not find an account for that e-mail address.");
-            return "forgot-password";
+            return "password/forgotPassword";
         }
         PasswordResetToken token = new PasswordResetToken();
         token.setToken(UUID.randomUUID().toString());

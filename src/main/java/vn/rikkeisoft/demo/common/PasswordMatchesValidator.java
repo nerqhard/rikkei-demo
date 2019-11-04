@@ -9,7 +9,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context) {
-        PasswordResetDTO user = (PasswordResetDTO) obj;
-        return user.getPass().equals(user.getConfirmPass());
+        PasswordResetDTO account = (PasswordResetDTO) obj;
+        return account.getPass().equals(account.getConfirmPass());
     }
 }

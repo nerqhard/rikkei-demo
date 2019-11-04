@@ -24,7 +24,7 @@ public class EmailService {
             MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
             Context context = new Context();
             context.setVariables(mail.getModel());
-            String html = templateEngine.process("password/emailtemplate", context);
+            String html = templateEngine.process("password/emailTemplate", context);
             helper.setTo(mail.getTo());
             helper.setText(html, true);
             helper.setSubject(mail.getSubject());

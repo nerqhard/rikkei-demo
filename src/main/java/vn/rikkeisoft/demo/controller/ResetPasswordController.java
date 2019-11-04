@@ -12,7 +12,6 @@ import vn.rikkeisoft.demo.entity.AccountEntity;
 import vn.rikkeisoft.demo.entity.PasswordResetToken;
 import vn.rikkeisoft.demo.repositories.PasswordResetTokenRepository;
 import vn.rikkeisoft.demo.service.AccountService;
-import vn.rikkeisoft.demo.service.dto.AccountDTO;
 import vn.rikkeisoft.demo.service.dto.PasswordResetDTO;
 
 import javax.validation.Valid;
@@ -49,7 +48,7 @@ public class ResetPasswordController {
             model.addAttribute("token", resetToken.getToken());
         }
 
-        return "password/resetpassword";
+        return "password/resetPassword";
     }
     @PostMapping
     @Transactional

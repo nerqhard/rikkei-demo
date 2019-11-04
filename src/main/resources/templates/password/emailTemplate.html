@@ -19,22 +19,22 @@
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
     <tr>
         <td align="center" bgcolor="#fafafa" style="padding: 20px 0 10px 0;">
-            <p>TEST-RESET-PASSWORD</p>
+            <h2>TEST-RESET-PASSWORD</h2>
         </td>
     </tr>
     <tr>
         <td bgcolor="#eaeaea" style="padding: 40px 30px 40px 30px;">
-            <p th:text="${'Dear ' + dto.fullName}"></p>
+            <p th:text="${'Dear ' + dto.fullName} +'!'"></p>
             <p>
-                You've requested a password reset.Reset your password here
-                <a th:href="${resetUrl}">click me</a>
+                You've requested a password reset. Reset your password here
+                <a th:href="${resetUrl}">Click me</a>
             </p>
             <p>Admin</p>
             <i>Quang Ha</i>
         </td>
     </tr>
     <tr>
-        <td bgcolor="#fafafa" style="padding: 20px 20px 20px 20px;">
+        <td bgcolor="#fafafa">
             <p th:text="${signature}"></p>
         </td>
     </tr>
