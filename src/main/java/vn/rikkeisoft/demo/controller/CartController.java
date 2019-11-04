@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vn.rikkeisoft.demo.repositories.OrderDetailRepository;
 
 @Controller
-@RequestMapping("/mycart")
-public class OrderItemController {
+@RequestMapping("/my-cart")
+public class CartController {
     @Autowired
     private OrderDetailRepository orderDetailRepository;
 
     @GetMapping("/")
     public String get(Model model) {
         model.addAttribute("orders", orderDetailRepository.findAll());
-        return "mycart";
+        return "myCart";
     }
 }

@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
 
-    //Cho phep de mo Css, Js, Image trong resources
+//    Cho phep de mo Css, Js, Image trong resources
     @Override
     public void configure(WebSecurity web){
         web.ignoring().antMatchers("/css/**", "/js/**", "/images/**");

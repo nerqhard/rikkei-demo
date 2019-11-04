@@ -66,7 +66,7 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String progressRegiter(@Valid AccountDTO accountDTO, BindingResult bindingResult, Model model) {
+    public String progressRegister(@Valid AccountDTO accountDTO, BindingResult bindingResult, Model model) {
 
         //Use Jpa find username on database
         AccountDTO username = accountService.findByUsername(accountDTO.getUsername());
@@ -80,9 +80,9 @@ public class MainController {
         } else {
             //save User
             accountService.save(accountDTO);
-            //Add message Succsess --> Attribute
+            //Add message Success --> Attribute
             model.addAttribute("successMessage", "Registered successfully, please login... ");
-            //come to pagaLogin
+            //come to pageLogin
             return "login";
         }
     }

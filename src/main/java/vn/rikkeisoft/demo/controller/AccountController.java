@@ -9,7 +9,7 @@ import vn.rikkeisoft.demo.repositories.AccountRepository;
 
 @Controller
 @RequestMapping("/accounts")
-public class AcountController {
+public class AccountController {
 
     @Autowired
     private AccountRepository accountRepository;
