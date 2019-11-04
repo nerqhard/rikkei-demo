@@ -67,10 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error")
                 .and()
                 //Cau hinh cho Logout Page
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
-                .and()
-                //Nguoi dung ko co quyen truy cap => redirect ve trang 403
-                .csrf().disable().exceptionHandling().accessDeniedPage("/403");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
 
     //Cho phep de mo Css, Js, Image trong resources

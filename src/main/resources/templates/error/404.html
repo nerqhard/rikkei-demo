@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="common/head :: head (pageTitle = '404 ERROR')"></th:block>
+<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+<link rel="stylesheet" th:href="@{css/400.css}">
+
+<body>
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <div></div>
+            <h1>404</h1>
+        </div>
+        <h2 style="color: aliceblue">Page not found</h2>
+        <p style="color: aliceblue">The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+        <a th:href="@{/}">Home page</a>
+    </div>
+</div>
+</body>
+<th:block th:replace="common/footer :: footer"></th:block>
+</html>
